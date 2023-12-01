@@ -6,21 +6,19 @@ const content = fs.readFileSync(
 )
 
 const lines = content.split('\n')
-
 let p1total = 0
 
 for (let i = 0; i < lines.length; i++) {
     const line = lines[i]
-
     let first, last
 
     for (let j = 0; j < line.length; j++) {
+        // look for numbers, verifying character is a number with parseInt
         let n = parseInt(line[j])
         if (isNaN(n)) continue
 
-        if (first == undefined) {
-            first = n
-        }
+        // only add first digit that is found
+        if (first == undefined) first = n
         last = n
     }
 
