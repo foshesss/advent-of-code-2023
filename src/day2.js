@@ -11,28 +11,26 @@ let p1sum = 0
 for (let i = 0; i < lines.length; i++) {
     let line = lines[i]
 
+    // chop off the string "Game (#): "
     const first_colon = line.indexOf(':')
     line = line.substring(first_colon + 2)
 
-
     const matches = line.split("; ")
-
     let valid = true
 
     matches.forEach(match => {
-        if (valid === false) return
+        if (valid === false) return // if over limit, no need to continue searching
 
         let total_red = 0
         let total_blue = 0
         let total_green = 0;
 
-        (match.split(", ")).forEach(round => {
-        
-            // console.log(round)
-
+        match.split(", ").forEach(round => {
             const round_length = round.length
 
 
+            // check if string contains a color
+            // if so, add it to the total
             if (round.indexOf("red") != -1) {
                 total_red += parseInt(round.substring(0, round_length - 4))
             } else if (round.indexOf("blue") != -1) {
@@ -42,9 +40,11 @@ for (let i = 0; i < lines.length; i++) {
             }
         })
 
+        // check if this match pushed us opver the limit
         valid = total_red <= 12 && total_blue <= 14 && total_green <= 13
     })
 
+    // add to sum p1sum if the match is valid (i + 1) == game id
     if (valid) {
         p1sum += (i + 1)
     }
@@ -58,16 +58,18 @@ let p2sum = 0
 for (let i = 0; i < lines.length; i++) {
     let line = lines[i]
 
+    // chop off the string "Game (#): "
     const first_colon = line.indexOf(':')
     line = line.substring(first_colon + 2)
 
-
+    // get all matches
     const matches = line.split("; ")
 
     let smallest_red = -1
     let smallest_blue = -1
     let smallest_green = -1
 
+    // determine smallest possible of each color
     matches.forEach(match => {
         (match.split(", ")).forEach(round => {
             const round_length = round.length
@@ -83,6 +85,7 @@ for (let i = 0; i < lines.length; i++) {
         })
     })
 
+    // add the smallest of each multiplied together
     p2sum += (smallest_red * smallest_blue * smallest_green)
 }
 
