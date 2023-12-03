@@ -40,8 +40,8 @@ for (let i = 0; i < lines.length; i++) {
                     if (isNaN(parseInt(lines[row][temp]))) break
                     start = temp
                 }
-
-                // decrement to find start index
+                
+                // increment to find end index
                 for (let temp = col; temp < line.length; temp++) {
                     if (isNaN(parseInt(lines[row][temp]))) break
                     end = temp
@@ -98,7 +98,7 @@ for (let i = 0; i < lines.length; i++) {
                     start = temp
                 }
 
-                // decrement to find start index
+                // increment to find end index
                 for (let temp = col; temp < line.length; temp++) {
                     if (isNaN(parseInt(lines[row][temp]))) break
                     end = temp
