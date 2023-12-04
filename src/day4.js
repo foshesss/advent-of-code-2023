@@ -8,7 +8,7 @@ const content = fs.readFileSync(
 const lines = content.split('\n')
 let p1sum = 0
 
-let num_matches = {}
+let num_matches = {} // used in part 2
 
 for (let i = 0; i < lines.length; i++) {
     let line = lines[i]
@@ -26,6 +26,7 @@ for (let i = 0; i < lines.length; i++) {
         seen.add(value)
     })
 
+    // find how many matches a card has (used in p2)
     num_matches[i] = seen.size
 
     if (seen.size == 0) continue
